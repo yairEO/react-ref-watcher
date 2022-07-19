@@ -1,55 +1,20 @@
-<svg width="600" height="100" fill-rule="evenodd" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="670" height="100" fill-rule="evenodd" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<defs>
 	<style>
-	svg {
-		width: 100%;
-		font: 5em/1 Open Sans, Impact;
-	}
+        svg {
+            width: 100%;
+            fill: #F2385A;
+        }
 
-	.text {
-		fill: none;
-		stroke-width: 3;
-		stroke-linejoin: round;
-		stroke-dasharray: 70 330;
-		stroke-dashoffset: 0;
-		animation: stroke 4s infinite linear;
-	}
-	.text:nth-child(5n+1) {
-		stroke: #F2385A;
-		animation-delay: -1.2s;
-	}
-	.text:nth-child(5n+2) {
-		stroke: #F5A503;
-		animation-delay: -2.4s;
-	}
-	.text:nth-child(5n+3) {
-		stroke: #E9F1DF;
-		animation-delay: -3.6s;
-	}
-	.text:nth-child(5n+4) {
-		stroke: #56D9CD;
-		animation-delay: -4.8s;
-	}
-	.text:nth-child(5n+5) {
-		stroke: #3AA1BF;
-		animation-delay: -6s;
-	}
-
-	@-webkit-keyframes stroke {
-		100% {
-			stroke-dashoffset: -400;
-		}
-	}
-	@keyframes stroke {
-		100% {
-			stroke-dashoffset: -400;
-		}
-	}
+        text {
+            font: 600 5em/1 Helvetica, Arial;
+            white-space: pre;
+        }
 	</style>
 	</defs>
     <!-- Symbol-->
 	<symbol id="s-text">
-		<text text-anchor="middle" x="50%" y="50%" dy=".35em">react ref watcher</text>
+		<text text-anchor="middle" x="50%" y="50%" dy=".35em">React ref Watcher</text>
 	</symbol>
 	<!-- Duplicate symbols-->
 	<use class="text" xlink:href="#s-text"></use>
