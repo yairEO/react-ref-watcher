@@ -8,6 +8,7 @@
 
 ---
 
+[Live demo](https://codesandbox.io/s/ref-change-listener-m5bupr?file=/src/List.js)
 
 Keep (or place) all the state at parent-component-level, as refs, and pass it to the sub-components with props or context.<br>
 (I prefer context so deeply nested comopnents can access the state without drilling-down the props).
@@ -91,6 +92,3 @@ const watchableRef = propWatcher({ current: true })
 ```
 
 
-```
-
-[Live demo]([httpsonsole](https://codesandbox.io/s/ref-change-listener-m5bupr?file=/src/List.js))
