@@ -1,0 +1,67 @@
+{
+    "name": "@yaireo/react-ref-watcher",
+    "version": "0.0.1",
+    "homepage": "https://github.com/yairEO/react-ref-watcher",
+    "description": "React watchable refs changes with conditional re-renders",
+    "keywords": [
+        "react",
+        "hooks",
+        "hook",
+        "useRef",
+        "proxy",
+        "watch",
+        "listen",
+        "changes",
+        "detect",
+        "watchable"
+    ],
+    "license": "MIT",
+    "browserslist": [
+        ">1%",
+        "not dead",
+        "not ie < 11",
+        "not IE_Mob 11",
+        "not op_mini all"
+    ],
+    "np": {
+        "yarn": false,
+        "yolo": true
+    },
+    "scripts": {
+        "start": "npm run build",
+        "build": "terser useSmartRef.js --compress --mangle --output dist/useSmartRef.js",
+        "clean": "rm -rf dist && npm run makedir",
+        "makedir": "mkdirp dist",
+        "header": "headr dist/useSmartRef.js -o=dist/useSmartRef.js --version --homepage --author",
+        "version": "npm run build && npm run header && git add .",
+        "prepublishOnly": "pkg-ok"
+    },
+    "author": {
+        "name": "Yair Even-Or",
+        "email": "vsync.design@gmail.com"
+    },
+    "main": "./src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yairEO/react-ref-watcher.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yaireo/react-ref-watcher/issues"
+    },
+    "files": [
+        "src/index.js",
+        "src/useSmartRef.js",
+        "src/useSmartRefEffect.js",
+        "src/useSmartRefListener.js",
+        "src/propWatcher.js"
+    ],
+    "peerDependencies": {
+        "react": "^18.0.0"
+    },
+    "devDependencies": {
+        "headr": "^0.0.4",
+        "mkdirp": "^1.0.4",
+        "rimraf": "^3.0.2",
+        "terser": "^5.14.2"
+    }
+}
