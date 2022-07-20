@@ -1,6 +1,6 @@
 {
     "name": "@yaireo/react-ref-watcher",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "homepage": "https://github.com/yairEO/react-ref-watcher",
     "description": "React watchable refs changes with conditional re-renders",
     "keywords": [
@@ -33,7 +33,7 @@
         "clean": "rm -rf dist && npm run makedir",
         "makedir": "mkdirp dist",
         "header": "headr dist/useSmartRef.js -o=dist/useSmartRef.js --version --homepage --author",
-        "version": "npm run build && npm run header && git add .",
+        "_version": "npm run build && npm run header && git add .",
         "prepublishOnly": "pkg-ok"
     },
     "author": {
