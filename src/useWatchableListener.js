@@ -4,18 +4,17 @@ import {useId, useState, useCallback} from 'react'
  * Listens to refs changes.
  * By default will trigger a re-render in the component which is using this hook if
  * a change in the ref itself or specific property is detected.
- * @param {*} ref an object to listen to
- * @param {*} path (optional) path
+ * @param {Object} ref an object to listen to
+ * @param {String} propName (optional) specific property name to watch within the `ref`
+ * @param {function} watcher (optional) the logic which decides if the component should be re-rendered
  */
-const useWatchable = (
+const useWatchableListener = (
     ref,
     propName,
-
-    // optional argument, for custom watcher
     watcher = (propName, prop, value, setState) =>
         prop === propName // if "propName" is not defined, listen to all changes at any prop
-        ? setState(value)
-        : !propName && setState(Math.random()) // if no "propName" supplied, assume any change to any prop should be watched, hence the value is not important and to trigger a re-render a new state must be uniquly generated
+            ? setState(value)
+            : !propName && setState(Math.random()) // if no "propName" supplied, assume any change to any prop should be watched, hence the value is not important and to trigger a re-render a new state must be uniquly generated
     ) => {
 
     const [state, setState] = useState()
@@ -25,12 +24,12 @@ const useWatchable = (
 
     // catch errors
     if( !ref ) {
-        console.warn("useWatchable - ref does not exists")
+        console.warn("useWatchableListener - ref does not exists")
         return
     }
 
     if( !ref.__WATCHERS ) {
-        console.warn("useWatchable - ref is not watchable. Did you pass the correct Object?")
+        console.warn("useWatchableListener - ref is not watchable. Did you pass the correct Object?")
         return
     }
 
@@ -40,4 +39,4 @@ const useWatchable = (
     return unlisten
 }
 
-export default useWatchable
+export default useWatchableListener
