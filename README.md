@@ -13,10 +13,10 @@
   </a>
 </p>
 
-Keep (or place) all the state at parent-component-level, as refs, and pass it to the sub-components with props or context.<br>
+Keep (or place) all the state at parent-component-level, as refs, and pass it to the sub-components with props or context.
 (I prefer context so deeply nested comopnents can access the state without drilling-down the props).
 
-This solves the problem where a child updates a state defined at some top-parent level which is causing the parent to re-render.
+This solves the problem where a child updates a state defined at some top-level parent which is causing the parent to re-render and possibly other children.
 
 Each sub-component can register a listener for changes in a specific `ref` or any of its `.current` properties (assuming `current` points to a mutated Object/Array).
 
