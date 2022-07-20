@@ -1,6 +1,6 @@
 {
     "name": "@yaireo/react-ref-watcher",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "homepage": "https://github.com/yairEO/react-ref-watcher",
     "description": "React watchable refs changes with conditional re-renders",
     "keywords": [
