@@ -1,12 +1,17 @@
 <p align="center">
   <a href="https://codesandbox.io/s/ref-change-listener-m5bupr?file=/src/List.js">
-    <img  src="readme-header.svg"/ >
+    <img src="readme-header.svg"/ >
   </a>
 </p>
 <h3 align="center">Watch <code>ref</code> changes with conditional re-renders</h3>
 <p align='center'>(First draft - expect changes) <a href='https://codesandbox.io/s/ref-change-listener-m5bupr?file=/src/List.js'>Live demo</a></p>
 
 ---
+<p align="center">
+  <a href="https://codesandbox.io/s/ref-change-listener-m5bupr?file=/src/List.js">
+    <img src='react-ref-watcher.apng'/>
+  </a>
+</p>
 
 Keep (or place) all the state at parent-component-level, as refs, and pass it to the sub-components with props or context.<br>
 (I prefer context so deeply nested comopnents can access the state without drilling-down the props).
