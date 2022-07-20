@@ -7,7 +7,7 @@ import {useId, useState, useCallback} from 'react'
  * @param {*} ref an object to listen to
  * @param {*} path (optional) path
  */
-const useSmartRefListener = (
+const useWatchable = (
     ref,
     propName,
 
@@ -25,12 +25,12 @@ const useSmartRefListener = (
 
     // catch errors
     if( !ref ) {
-        console.warn("useSmartRefListener - ref does not exists")
+        console.warn("useWatchable - ref does not exists")
         return
     }
 
     if( !ref.__WATCHERS ) {
-        console.warn("useSmartRefListener - ref is not watchable. Did you pass the correct Object?")
+        console.warn("useWatchable - ref is not watchable. Did you pass the correct Object?")
         return
     }
 
@@ -40,4 +40,4 @@ const useSmartRefListener = (
     return unlisten
 }
 
-export default useSmartRefListener
+export default useWatchable

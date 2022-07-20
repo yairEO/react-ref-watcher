@@ -30,7 +30,7 @@ npm i @yaireo/\useSmartRef -S
 
 ## What's in this package?
 
-### `useSmartRef`
+### `useWatchableRef`
 
 Create a ref-like object that listens to any change in the `current` property
 and fires all registered callbacks when a change happens to the `current` property.
@@ -43,7 +43,7 @@ const Component = () => {
 }
 ```
 
-### `useSmartRefListener`
+### `useWatchable`
 
 Listens to refs changes.
 By default will trigger a re-render in the component which is using this hook if
@@ -55,13 +55,13 @@ import {useSmartRef} from '@yaireo/react-ref-watcher'
 const Component = ({ ref1 }) => {
   const {ref2} = useContext(MyContext) // getting a ref from somewhere up the tree
 
-  useSmartRefListener(ref1) // triggers a re-render when ref1 changes (assuming the `ref1.current` is pointing now a new pointer in memory)
-  useSmartRefListener(ref2.current, 'foo') // triggers a re-render when `foo` property changes in ref2.current (assuming ref2.current is an Object)
+  useWatchable(ref1) // triggers a re-render when ref1 changes (assuming the `ref1.current` is pointing now a new pointer in memory)
+  useWatchable(ref2.current, 'foo') // triggers a re-render when `foo` property changes in ref2.current (assuming ref2.current is an Object)
 }
 ```
 
 
-### `useSmartRefEffect`
+### `useWatchableEffect`
 
 Listen to changes in a ref **without** triggering a re-render
 
@@ -69,7 +69,7 @@ Listen to changes in a ref **without** triggering a re-render
 import {useSmartRef} from '@yaireo/react-ref-watcher'
 
 const Component = ({ ref1, ref2 }) => {
-  useSmartRefEffect(() => {
+  useWatchableEffect(() => {
     ref2.current = ref1 === 'foo';
   }, [ref1])
 
@@ -82,7 +82,7 @@ const Component = ({ ref1, ref2 }) => {
 ### `propWatcher`
 
 Unlike the other hooks, this is a utility function which does the actual watching.
-It adds an enumerable `__WATCHERS` property (an Obejct of possible listeners) on top of the argument (an *Object*) and then
+It adds an enumerable `__WATCHERS` property (an Object of possible listeners) on top of the argument (an *Object*) and then
 returns a new `proxy` which encapsulates the argument.
 
 Every time a propery is modified or deleted (in your code) the proxy trap will fire and all

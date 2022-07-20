@@ -7,5 +7,5 @@ import propWatcher from './propWatcher'
  */
 const useSmartRef = (initialValue) => useMemo(() => propWatcher({ current: initialValue }), [])
 
-export default useSmartRef
+export default useWatchableRef
 

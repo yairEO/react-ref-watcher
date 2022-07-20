@@ -50,9 +50,9 @@
     },
     "files": [
         "src/index.js",
-        "src/useSmartRef.js",
-        "src/useSmartRefEffect.js",
-        "src/useSmartRefListener.js",
+        "src/useWatchableRef.js",
+        "src/useWatchable.js",
+        "src/useWatchableEffect.js",
         "src/propWatcher.js"
     ],
     "peerDependencies": {

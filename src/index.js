@@ -1,4 +1,4 @@
-export {default as useSmartRef} from './useSmartRef'
-export {default as useSmartRefEffect} from './useSmartRefEffect'
-export {default as useSmartRefEffect} from './useSmartRefEffect'
+export {default as useWatchableRef} from './useWatchableRef'
+export {default as useWatchable} from './useWatchable'
+export {default as useWatchableEffect} from './useWatchableEffect'
 export {default as propWatcher} from './propWatcher'
