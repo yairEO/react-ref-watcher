@@ -1,20 +1,31 @@
-<svg width="670" height="100" fill-rule="evenodd" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="550" height="100" fill-rule="evenodd" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<defs>
 	<style>
+		@font-face {
+  font-family: 'Dancing Script';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(data:font/woff2;base64,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) format('woff2');
+}
         svg {
             width: 100%;
             fill: #F2385A;
         }
 
         text {
-            font: 600 5em/1 Helvetica, Arial;
+            font: 600 5em/1 "Dancing Script", Arial;
             white-space: pre;
         }
+		
+		tspan {
+		fill: DodgerBlue;
+		}
 	</style>
 	</defs>
     <!-- Symbol-->
 	<symbol id="s-text">
-		<text text-anchor="middle" x="50%" y="50%" dy=".35em">React ref Watcher</text>
+		<text text-anchor="middle" x="50%" y="50%" dy=".35em">React <tspan>ref</tspan> Watcher</text>
 	</symbol>
 	<!-- Duplicate symbols-->
 	<use class="text" xlink:href="#s-text"></use>
