@@ -3,7 +3,7 @@
     <img src="readme-header.svg"/ >
   </a>
 </p>
-<h3 align="center">Watch <code>ref</code> changes with conditional re-renders</h3>
+<h3 align="center">👀 Watch <code>ref</code> changes with conditional re-renders</h3>
 <p align='center'>(First draft - expect changes) <a href='https://codesandbox.io/s/ref-change-listener-m5bupr?file=/src/List.js'>Live demo</a></p>
 
 ---
@@ -13,12 +13,16 @@
   </a>
 </p>
 
+<br>
+
 Keep (or place) all the state at parent-component-level, as refs, and pass it to the sub-components with props or context.
 (I prefer context so deeply nested comopnents can access the state without drilling-down the props).
 
 This solves the problem where a child updates a state defined at some top-level parent which is causing the parent to re-render and possibly other children.
 
 Each sub-component can register a listener for changes in a specific `ref` or any of its `.current` properties (assuming `current` points to a mutated Object/Array).
+
+<br>
 
 ## Install:
 
@@ -28,9 +32,11 @@ Use from [CDN](https://unpkg.com/@yaireo/\useSmartRef) / Download from this repo
 npm i @yaireo/\useSmartRef -S
 ```
 
+<br><br>
+
 ## What's in this package?
 
-### `useWatchableRef`
+### 1️⃣ `useWatchableRef`
 
 | Argument      | Type  | Info
 |---------------|-------|-------------------------------------------------------------
@@ -47,7 +53,9 @@ const Component = () => {
 }
 ```
 
-### `useWatchableListener`
+<br>
+
+### 2️⃣ `useWatchableListener`
 
 | Argument | Type     | Info
 |----------|----------|-------------------------------------------------------------
@@ -70,8 +78,9 @@ const Component = ({ ref1 }) => {
 }
 ```
 
+<br>
 
-### `useWatchableEffect`
+### 3️⃣ `useWatchableEffect`
 
 | Argument      | Type     | Info
 |---------------|----------|-------------------------------------------------------------
@@ -93,12 +102,15 @@ const Component = ({ ref1, ref2 }) => {
 }
 ```
 
+<br>
 
-### `propWatcher`
+### 4️⃣ `propWatcher`
 
 Unlike the other hooks, this is a utility function which does the actual watching.
 It adds an enumerable `__WATCHERS` property (an Object of possible listeners) on top of the argument (an *Object*) and then
-returns a new `proxy` which encapsulates the argument.
+returns a new `proxy` which encapsulates the argument. 
+
+Any Object can be wrapped with `propWatcher` to become "watchable".
 
 Every time a propery is modified or deleted (in your code) the proxy trap will fire and all
 callback functions defined in the `__WATCHERS` property will fire.
