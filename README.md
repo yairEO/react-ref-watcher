@@ -24,12 +24,17 @@ Each sub-component can register a listener for changes in a specific `ref` or an
 
 <br>
 
-## Install:
+## Install with:
 
-Use from [CDN](https://unpkg.com/@yaireo/\useSmartRef) / Download from this repo / [NPM](https://www.npmjs.com/package/@yaireo/\useSmartRef)
 
-```bash
-npm i @yaireo/\useSmartRef -S
+### NPM:
+```bash 
+npm i @yaireo/react-ref-watcher -S
+```
+
+### PNPM:
+```bash 
+pnpm add @yaireo/react-ref-watcher 
 ```
 
 <br><br>
@@ -46,10 +51,10 @@ Create a ref-like object that listens to any change in the `current` property
 and fires all registered callbacks when a change happens to the `current` property.
 
 ```js
-import {useSmartRef} from '@yaireo/react-ref-watcher'
+import {useWatchableRef} from '@yaireo/react-ref-watcher'
 
 const Component = () => {
-  const myRef = useSmartRef(true)
+  const myRef = useWatchableRef(true)
 }
 ```
 
@@ -85,12 +90,12 @@ const Component = ({ ref1 }) => {
 | Argument      | Type     | Info
 |---------------|----------|-------------------------------------------------------------
 | callback      | Function | fires when a ref change detetced
-| dependencies  | Array    | array of watchable "smart" refs
+| dependencies  | Array    | array of watchable refs
 
 Listen to changes in a ref **without** triggering a re-render
 
 ```js
-import {useWatchableEffect, useSmartRefListener} from '@yaireo/react-ref-watcher'
+import {useWatchableEffect, useWatchableListener} from '@yaireo/react-ref-watcher'
 
 const Component = ({ ref1, ref2 }) => {
   useWatchableEffect(() => {
@@ -98,7 +103,7 @@ const Component = ({ ref1, ref2 }) => {
   }, [ref1])
 
   // ref2 is dependend on ref1. Only when ref2 changes the component should re-render
-  useSmartRefListener(ref2)
+  useWatchableListener(ref2)
 }
 ```
 
