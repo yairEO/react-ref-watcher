@@ -1,0 +1,35 @@
+body {
+  font: 16px Arial;
+  padding: 1em;
+  max-width: 600px;
+  margin: auto;
+}
+
+#root {
+  font-size: 20px;
+  border: 2px dashed salmon;
+  margin: 2em 0;
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.list-wrapper {
+  > header {
+    margin-bottom: 1em;
+  }
+}
+
+label {
+  display: inline-flex;
+  gap: 5px;
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    transform: scale(1.3);
+  }
+
+  &:hover {
+    color: royalblue;
+  }
+}
