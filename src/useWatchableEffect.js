@@ -1,28 +1,26 @@
-import {useId} from 'react'
+import {useEffect} from 'react'
+import {useId} from './utils'
+import {setWatcher, removeWatcher} from './propWatcher'
 
 /**
- * Similar to "useSmartRefListener" but just listens without automatically re-rendering (no 'useState')
+ * Similar to "useWatchableListener" but just listens without automatically re-rendering (no 'useState')
  * @param {*} callback fires when a ref change detetced
- * @param {*} dependencies array of watchable "smart" refs
+ * @param {*} dependencies array of watchable refs
  */
 const useWatchableEffect = (callback, dependencies) => {
     const id = useId()
 
-    dependencies.forEach(ref => {
-        // catch errors
-        if( !ref ) {
-            console.warn("useWatchableEffect - ref does not exists")
-            return
-        }
+    useEffect(() => {
+        // bind the callback to all dependencies
+        dependencies.forEach(ref => {
+            setWatcher(ref, id.current, callback)
+        })
 
-        if( !ref.__WATCHERS ) {
-            console.warn("useWatchableEffect - ref is not watchable. Did you pass the correct Object?")
-            return
+        // remove callback if component unmounted
+        return () => {
+            dependencies.forEach(ref => removeWatcher(ref, id.current))
         }
-
-        // register a listener for that namespace
-        ref.__WATCHERS[id] = callback
-    })
+    }, dependencies)
 }
 
-export default useWatchableEffect;
+export default useWatchableEffect

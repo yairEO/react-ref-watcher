@@ -1,4 +1,6 @@
-import {useId, useState, useCallback} from 'react'
+import {useState, useCallback, useEffect} from 'react'
+import {useId} from './utils'
+import {setWatcher, removeWatcher} from './propWatcher'
 
 /**
  * Listens to refs changes.
@@ -19,22 +21,13 @@ const useWatchableListener = (
 
     const [state, setState] = useState()
     const id = useId()
-
-    const unlisten = useCallback(() => { delete ref.__WATCHERS[id] }, [ref, id])
-
-    // catch errors
-    if( !ref ) {
-        console.warn("useWatchableListener - ref does not exists")
-        return
-    }
-
-    if( !ref.__WATCHERS ) {
-        console.warn("useWatchableListener - ref is not watchable. Did you pass the correct Object?")
-        return
-    }
+    const unlisten = useCallback(() => removeWatcher(ref, id), [ref, id])
 
     // register a listener for that namespace
-    ref.__WATCHERS[id] = (prop, value) => watcher(propName, prop, value, setState)
+    setWatcher(ref, id, (prop, value) => watcher(propName, prop, value, setState))
+
+    // remove callback if component unmounted
+    useEffect(() => unlisten, [])
 
     return unlisten
 }
