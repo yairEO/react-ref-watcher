@@ -3,7 +3,7 @@
     <img src="readme-header.svg"/ >
   </a>
 </p>
-<h3 align="center">Watch <code>ref</code> changes with conditional re-renders</h3>
+<h3 align="center">👀 Watch <code>ref</code> changes with conditional re-renders</h3>
 <p align='center'>(First draft - expect changes) <a href='https://codesandbox.io/s/ref-change-listener-m5bupr?file=/src/List.js'>Live demo</a></p>
 
 ---
@@ -24,7 +24,9 @@ possibly all the sub-tree as well, which is useless and even harmful for perform
 Each sub-component can register a listener for changes in a specific `ref` or any of its `current` property's properties
 (assuming `current` points to a mutated Object/Array).
 
-## Install:
+<br>
+
+## Install with:
 
 Use from [CDN](https://unpkg.com/@yaireo/react-ref-watcher) / Download from this repo / [NPM](https://www.npmjs.com/package/@yaireo/react-ref-watcher)
 
@@ -32,9 +34,11 @@ Use from [CDN](https://unpkg.com/@yaireo/react-ref-watcher) / Download from this
 npm i @yaireo/react-ref-watcher -S
 ```
 
+<br><br>
+
 ## What's in this package?
 
-### `useWatchableRef`
+### 1️⃣ `useWatchableRef`
 
 | Argument      | Type  | Info
 |---------------|-------|-------------------------------------------------------------
@@ -53,7 +57,9 @@ const Component = () => {
 }
 ```
 
-### `useWatchableListener`
+<br>
+
+### 2️⃣ `useWatchableListener`
 
 | Argument | Type     | Info
 |----------|----------|-------------------------------------------------------------
@@ -78,8 +84,9 @@ const Component = ({ ref1 }) => {
 }
 ```
 
+<br>
 
-### `useWatchableEffect`
+### 3️⃣ `useWatchableEffect`
 
 | Argument      | Type     | Info
 |---------------|----------|-------------------------------------------------------------
@@ -102,8 +109,9 @@ const Component = ({ ref1, ref2 }) => {
 }
 ```
 
+<br>
 
-### `propWatcher`
+### 4️⃣ `propWatcher`
 
 Unlike the other hooks, this is a utility function which does the actual watching.
 It adds an enumerable `__WATCHERS` property (will host callback listeners when changes detected)
@@ -112,6 +120,7 @@ on top of the argument (expected to be an *Object*) and then returns a new `prox
 Every time a propery is modified or deleted (in your code) the proxy trap will fire and all
 callback functions defined in the `__WATCHERS` property will fire.
 
+Any Object may be wrapped with `propWatcher` to become "watchable" (not only React refs).
 **Example of most basic usage:**
 
 ```js
