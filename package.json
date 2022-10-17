@@ -29,17 +29,14 @@
     },
     "scripts": {
         "start": "npm run build",
-        "build": "terser useSmartRef.js --compress --mangle --output dist/useSmartRef.js",
+        "build": "terser useRefWatcher.js --compress --mangle --output dist/useRefWatcher.js",
         "clean": "rm -rf dist && npm run makedir",
         "makedir": "mkdirp dist",
-        "header": "headr dist/useSmartRef.js -o=dist/useSmartRef.js --version --homepage --author",
+        "header": "headr dist/useRefWatcher.js -o=dist/useRefWatcher.js --version --homepage --author",
         "_version": "npm run build && npm run header && git add .",
         "prepublishOnly": "pkg-ok"
     },
-    "author": {
-        "name": "Yair Even-Or",
-        "email": "vsync.design@gmail.com"
-    },
+    "author": "Yair Even-Or <vsync.design@gmail.com>",
     "main": "./src/index.js",
     "repository": {
         "type": "git",
