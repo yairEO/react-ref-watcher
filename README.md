@@ -13,19 +13,23 @@
   </a>
 </p>
 
-Keep (or place) all the state at parent-component-level, as refs, and pass it to the sub-components with props or context.
-(I prefer context so deeply nested comopnents can access the state without drilling-down the props).
+Use `useRef` instead of `useState` by allowing it to be watchable, so a component can choose to act
+(re-render for example) when a change in the ref is detected.
 
-This solves the problem where a child updates a state defined at some top-level parent which is causing the parent to re-render and possibly other children.
+This is helpful for keeping all the state at a top-level component, and pass it to the sub-components via *props* or *context*.
 
-Each sub-component can register a listener for changes in a specific `ref` or any of its `.current` properties (assuming `current` points to a mutated Object/Array).
+This solves the problem where a child updates a state defined at some top-level parent, which causes the parent to re-render and
+possibly all the sub-tree as well, which is useless and even harmful for performance in many situations.
+
+Each sub-component can register a listener for changes in a specific `ref` or any of its `current` property's properties
+(assuming `current` points to a mutated Object/Array).
 
 ## Install:
 
-Use from [CDN](https://unpkg.com/@yaireo/\useSmartRef) / Download from this repo / [NPM](https://www.npmjs.com/package/@yaireo/\useSmartRef)
+Use from [CDN](https://unpkg.com/@yaireo/react-ref-watcher) / Download from this repo / [NPM](https://www.npmjs.com/package/@yaireo/react-ref-watcher)
 
 ```bash
-npm i @yaireo/\useSmartRef -S
+npm i @yaireo/react-ref-watcher -S
 ```
 
 ## What's in this package?
@@ -39,11 +43,13 @@ npm i @yaireo/\useSmartRef -S
 Create a ref-like object that listens to any change in the `current` property
 and fires all registered callbacks when a change happens to the `current` property.
 
+Think of this as a regular `useRef` with the bonus of being watchable. See examples down.
+
 ```js
-import {useSmartRef} from '@yaireo/react-ref-watcher'
+import {useWatchableRef} from '@yaireo/react-ref-watcher'
 
 const Component = () => {
-  const myRef = useSmartRef(true)
+  const myRef = useWatchableRef(true)
 }
 ```
 
@@ -58,6 +64,8 @@ const Component = () => {
 Listens to refs changes.
 By default will trigger a re-render in the component which is using this hook if
 a change in the ref itself or specific property is detected.
+
+In this example, assume `ref1` & `ref2` were created using `useWatchableRef`.
 
 ```js
 import {useWatchableListener} from '@yaireo/react-ref-watcher'
@@ -76,20 +84,21 @@ const Component = ({ ref1 }) => {
 | Argument      | Type     | Info
 |---------------|----------|-------------------------------------------------------------
 | callback      | Function | fires when a ref change detetced
-| dependencies  | Array    | array of watchable "smart" refs
+| dependencies  | Array    | array of watchable refs
 
 Listen to changes in a ref **without** triggering a re-render
 
 ```js
-import {useWatchableEffect, useSmartRefListener} from '@yaireo/react-ref-watcher'
+import {useWatchableEffect, useWatchableListener} from '@yaireo/react-ref-watcher'
 
 const Component = ({ ref1, ref2 }) => {
+  // when `ref1` changes, run the callback
   useWatchableEffect(() => {
     ref2.current = ref1 === 'foo';
   }, [ref1])
 
   // ref2 is dependend on ref1. Only when ref2 changes the component should re-render
-  useSmartRefListener(ref2)
+  useWatchableListener(ref2)
 }
 ```
 
@@ -97,8 +106,8 @@ const Component = ({ ref1, ref2 }) => {
 ### `propWatcher`
 
 Unlike the other hooks, this is a utility function which does the actual watching.
-It adds an enumerable `__WATCHERS` property (an Object of possible listeners) on top of the argument (an *Object*) and then
-returns a new `proxy` which encapsulates the argument.
+It adds an enumerable `__WATCHERS` property (will host callback listeners when changes detected)
+on top of the argument (expected to be an *Object*) and then returns a new `proxy` which encapsulates the argument.
 
 Every time a propery is modified or deleted (in your code) the proxy trap will fire and all
 callback functions defined in the `__WATCHERS` property will fire.
